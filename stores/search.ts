@@ -1,12 +1,18 @@
 import { defineStore } from 'pinia'
-import { ResponseLocation } from '~/interfaces'
+import { ResponseLocation, CurrentLocation } from '~/interfaces'
 
 export const useSearchStore = defineStore('search', {
 	state() {
-		return {}
+		return {
+			currentLocationWeather: {} as CurrentLocation,
+			foundLocations: [] as ResponseLocation[],
+		}
 	},
 	actions: {
-		async searchLocation(searchValue: string): Promise<ResponseLocation[]> {
+		clearFoundLocationsData() {
+			this.foundLocations = [] as ResponseLocation[]
+		},
+		async searchLocation(searchValue: string): Promise<void> {
 			const config = useRuntimeConfig()
 			const data: ResponseLocation[] = await $fetch(
 				`${config.public.apiBase}/search.json`,
@@ -18,7 +24,25 @@ export const useSearchStore = defineStore('search', {
 					},
 				}
 			)
-			return data
+			this.foundLocations = data
+		},
+		async getCurrentLocationWeather(locationUrl: string): Promise<void> {
+			const config = useRuntimeConfig()
+			const data: CurrentLocation = await $fetch(
+				`${config.public.apiBase}/current.json`,
+				{
+					method: 'GET',
+					headers: {
+						'Access-Control-Allow-Origin': '*',
+					},
+					params: {
+						key: config.public.apiSecret,
+						q: locationUrl,
+						aqi: 'no',
+					},
+				}
+			)
+			this.currentLocationWeather = data
 		},
 	},
 })
