@@ -10,7 +10,8 @@ export default defineNuxtConfig({
 	modules: ['@nuxtjs/tailwindcss', '@nuxtjs/google-fonts', '@pinia/nuxt'],
 	googleFonts: {
 		families: {
-			FiraSans: true,
+			'Carter One': true,
+			'Permanent Marker': true,
 		},
 	},
 })

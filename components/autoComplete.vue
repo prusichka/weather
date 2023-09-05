@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { ResponseLocation } from '~/interfaces'
+import { ResponseLocationsFound } from '~/interfaces'
 import { useSearchStore } from '~/stores/search'
 const store = useSearchStore()
 defineProps<{
-	items: ResponseLocation[]
+	items: ResponseLocationsFound[]
 	loading: boolean
 }>()
 const emits = defineEmits(['clear-search-value'])
@@ -16,7 +16,7 @@ async function chooseCurrentLocation(locationUrl: string) {
 <template>
 	<div
 		id="autocomplete"
-		class="w-full mt-1 h-auto transition-all max-h-[200px] text-sm rounded-lg overflow-x-hidden overflow-y-auto bg-slate-800 bg-opacity-80 text-white">
+		class="w-full absolute z-50 mt-1 h-auto transition-all max-h-[200px] text-sm rounded-lg overflow-x-hidden overflow-y-auto bg-slate-800 text-white">
 		<CustomLoader v-if="loading" />
 		<div v-else>
 			<template v-if="items.length">
