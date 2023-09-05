@@ -12,9 +12,6 @@
 		"@nuxt/devtools": "latest",
 		"@nuxtjs/google-fonts": "^3.0.2",
 		"@nuxtjs/tailwindcss": "^6.8.0",
-		"firebase-admin": "^11.10.1",
-		"firebase-functions": "^4.4.1",
-		"firebase-functions-test": "^3.1.0",
 		"nuxt": "^3.7.0"
 	},
 	"overrides": {

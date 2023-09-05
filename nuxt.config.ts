@@ -10,6 +10,7 @@ export default defineNuxtConfig({
 	},
 	nitro: {
 		compressPublicAssets: true,
+		preset: 'vercel-edge'
 	},
 	modules: [
 		'@nuxtjs/tailwindcss',
