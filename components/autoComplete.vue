@@ -7,8 +7,8 @@ defineProps<{
 	loading: boolean
 }>()
 const emits = defineEmits(['clear-search-value'])
-async function chooseCurrentLocation(locationUrl: string) {
-	await store.getCurrentLocationWeather(locationUrl)
+async function chooseLocation(locationUrl: string) {
+	await store.getForecastLocationWeather(locationUrl)
 	store.clearFoundLocationsData()
 	emits('clear-search-value')
 }
@@ -24,7 +24,7 @@ async function chooseCurrentLocation(locationUrl: string) {
 					class="w-full p-3 group cursor-pointer divide-y"
 					v-for="el in items"
 					:key="el.id"
-					@click="chooseCurrentLocation(el.url)">
+					@click="chooseLocation(el.url)">
 					<div
 						class="w-full flex justify-between border-b last:border-b-0 border-cyan-950 group-hover:border-cyan-700 transition-colors">
 						<h2

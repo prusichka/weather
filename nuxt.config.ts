@@ -7,10 +7,18 @@ export default defineNuxtConfig({
 			apiSecret: '2046ad4ffc1e4efe89f84427230409',
 		},
 	},
-	modules: ['@nuxtjs/tailwindcss', '@nuxtjs/google-fonts', '@pinia/nuxt'],
+	nitro: {
+		compressPublicAssets: true,
+	},
+	modules: [
+		'@nuxtjs/tailwindcss',
+		'@nuxtjs/google-fonts',
+		'@pinia/nuxt',
+		'@nuxt/image',
+	],
 	googleFonts: {
 		families: {
-			'Carter One': true,
+			Manrope: true,
 			'Permanent Marker': true,
 		},
 	},

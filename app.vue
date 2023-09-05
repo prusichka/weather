@@ -5,7 +5,7 @@
 </template>
 <style>
 * {
-	font-family: 'Carter One', sans-serif;
+	font-family: 'Manrope', sans-serif;
 }
 ::-webkit-scrollbar {
 	width: 5px;
