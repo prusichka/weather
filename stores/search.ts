@@ -7,6 +7,7 @@ import {
 	ResponseWeatherForecastFullDay,
 	ResponseWeatherForecastHour,
 	AirConditionsToShowSmall,
+	ResponseWeatherForecastDay
 } from '~/interfaces'
 
 export const useSearchStore = defineStore('search', {
@@ -28,6 +29,9 @@ export const useSearchStore = defineStore('search', {
 		},
 		forecastToDay({ currentLocationWeather }): ResponseWeatherForecastFullDay {
 			return currentLocationWeather.forecast.forecastday[0].day
+		},
+		forecastWeek({ currentLocationWeather }): ResponseWeatherForecastDay[] {
+			return currentLocationWeather.forecast.forecastday
 		},
 		forecastToDayHours({
 			currentLocationWeather,
