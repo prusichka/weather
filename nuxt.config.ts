@@ -29,8 +29,33 @@ export default defineNuxtConfig({
 		'@pinia/nuxt',
 		'@nuxt/image',
 		'@pinia-plugin-persistedstate/nuxt',
-		'nuxt-icon'
+		'nuxt-icon',
+		'@vite-pwa/nuxt',
 	],
+	pwa: {
+		manifest: {
+			name: 'Weather',
+			short_name: 'Weather',
+			description: 'This is a Weather site',
+			theme_color: '#000000',
+			icons: [
+				{
+					src: 'android-launchericon-192-192.png',
+					sizes: '192x192',
+					type: 'image/png',
+				},
+				{
+					src: 'android-launchericon-512-512.png',
+					sizes: '512x512',
+					type: 'image/png',
+				},
+			],
+		},
+		devOptions: {
+			enabled: true,
+			type: 'module',
+		},
+	},
 	googleFonts: {
 		families: {
 			Manrope: true,
