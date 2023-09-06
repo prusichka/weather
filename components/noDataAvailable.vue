@@ -19,6 +19,7 @@ useHead({
 			width="400"
 			height="400"
 			alt="default weather image"
-			loading="lazy" />
+			loading="lazy"
+			:preload="true" />
 	</div>
 </template>

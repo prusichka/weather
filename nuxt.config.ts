@@ -2,6 +2,17 @@
 export default defineNuxtConfig({
 	ssr: true,
 	devtools: { enabled: true },
+	app: {
+		head: {
+			meta: [
+				{ name: 'description', content: 'My amazing weather site.' },
+				{ name: 'name', content: 'Weather' },
+			],
+			htmlAttrs: {
+				lang: 'en',
+			},
+		},
+	},
 	runtimeConfig: {
 		public: {
 			apiBase: 'https://api.weatherapi.com/v1',
@@ -10,14 +21,14 @@ export default defineNuxtConfig({
 	},
 	nitro: {
 		compressPublicAssets: true,
-		preset: 'vercel-edge'
+		preset: 'vercel-edge',
 	},
 	modules: [
 		'@nuxtjs/tailwindcss',
 		'@nuxtjs/google-fonts',
 		'@pinia/nuxt',
 		'@nuxt/image',
-		'@pinia-plugin-persistedstate/nuxt'
+		'@pinia-plugin-persistedstate/nuxt',
 	],
 	googleFonts: {
 		families: {
