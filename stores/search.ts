@@ -75,4 +75,7 @@ export const useSearchStore = defineStore('search', {
 			this.foundLocations = [] as ResponseLocationsFound[]
 		},
 	},
+	persist: {
+    storage: persistedState.localStorage,
+  },
 })
