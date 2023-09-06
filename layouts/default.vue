@@ -1,16 +1,10 @@
 <script setup lang="ts"></script>
 
 <template>
-	<div class="w-full h-full fixed bg-black bg-gradient-to-t from-gray-900 p-3 overflow-y-auto">
-		<div class="w-full h-[84px] mx-auto max-w-[500px] mb-4">
-			<h1
-				class="text-white select-none w-full flex justify-center text-[56px]"
-				style="font-family: 'Permanent Marker', sans-serif">
-				Weather
-			</h1>
-		</div>
+	<div
+		class="w-full h-full fixed bg-black bg-gradient-to-t from-gray-900 p-3 overflow-y-auto">
 		<FoundLocation />
-		<div class="w-full h-auto max-w-[1440px] mx-auto py-10">
+		<div class="w-full h-auto max-w-[1440px] mx-auto py-5">
 			<slot />
 		</div>
 	</div>

@@ -29,6 +29,7 @@ export default defineNuxtConfig({
 		'@pinia/nuxt',
 		'@nuxt/image',
 		'@pinia-plugin-persistedstate/nuxt',
+		'nuxt-icon'
 	],
 	googleFonts: {
 		families: {
