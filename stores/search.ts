@@ -4,7 +4,9 @@ import {
 	ResponseWeatherLocation,
 	ResponseWeatherInformation,
 	ResponseWeatherForecastBody,
-	ResponseWeatherForecastDay,
+	ResponseWeatherForecastFullDay,
+	ResponseWeatherForecastHour,
+	AirConditionsToShowSmall,
 } from '~/interfaces'
 
 export const useSearchStore = defineStore('search', {
@@ -24,16 +26,48 @@ export const useSearchStore = defineStore('search', {
 		weatherInfo({ currentLocationWeather }): ResponseWeatherInformation {
 			return currentLocationWeather.current
 		},
-		forecastToDay({ currentLocationWeather }) {
+		forecastToDay({ currentLocationWeather }): ResponseWeatherForecastFullDay {
 			return currentLocationWeather.forecast.forecastday[0].day
 		},
-		forecastToDayHours({ currentLocationWeather }) {
+		forecastToDayHours({
+			currentLocationWeather,
+		}): ResponseWeatherForecastHour[] {
 			return currentLocationWeather.forecast.forecastday[0].hour
 		},
-		forecastToDayHoursShort({ currentLocationWeather }) {
+		forecastToDayHoursShort({
+			currentLocationWeather,
+		}): ResponseWeatherForecastHour[] {
 			return currentLocationWeather.forecast.forecastday[0].hour
 				.filter((el, _idx) => _idx % 3 === 0)
 				.slice(2, -1)
+		},
+		airConditions({ currentLocationWeather }): AirConditionsToShowSmall[] {
+			return [
+				{
+					icon: 'material-symbols:thermometer',
+					title: 'Real feel:',
+					value: `${currentLocationWeather.current.temp_c}°`,
+					id: 1,
+				},
+				{
+					icon: 'la:wind',
+					title: 'Wind:',
+					value: `${currentLocationWeather.forecast.forecastday[0].day.maxwind_kph} km/h`,
+					id: 2,
+				},
+				{
+					icon: 'solar:cloud-waterdrops-bold-duotone',
+					title: 'Chance of rain:',
+					value: `${currentLocationWeather.forecast.forecastday[0].day.daily_chance_of_rain}%`,
+					id: 3,
+				},
+				{
+					icon: 'carbon:uv-index',
+					title: 'UV index:',
+					value: `${currentLocationWeather.forecast.forecastday[0].day.uv}`,
+					id: 4,
+				},
+			]
 		},
 	},
 	actions: {
@@ -64,7 +98,7 @@ export const useSearchStore = defineStore('search', {
 						key: config.public.apiSecret,
 						q: locationUrl,
 						aqi: 'no',
-						days: 1,
+						days: 7,
 						alerts: 'no',
 					},
 				}
@@ -76,6 +110,6 @@ export const useSearchStore = defineStore('search', {
 		},
 	},
 	persist: {
-    storage: persistedState.localStorage,
-  },
+		storage: persistedState.localStorage,
+	},
 })

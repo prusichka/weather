@@ -24,7 +24,7 @@ watch(searchValue, async () => {
 </script>
 
 <template>
-	<div class="w-full max-w-[500px] mx-auto">
+	<div class="w-full max-w-[500px] mx-auto mt-2">
 		<SearchInput v-model="searchValue" />
 		<div class="relative">
 			<AutoComplete

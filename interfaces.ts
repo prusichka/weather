@@ -139,3 +139,9 @@ export interface ResponseWeatherForecastBody extends ReceivedWeatherData {
 		forecastday: ResponseWeatherForecastDay[]
 	}
 }
+export interface AirConditionsToShowSmall {
+	icon: string
+	title: string
+	value: string
+	id: number
+}
