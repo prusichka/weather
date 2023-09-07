@@ -7,7 +7,8 @@ import {
 	ResponseWeatherForecastFullDay,
 	ResponseWeatherForecastHour,
 	AirConditionsToShowSmall,
-	ResponseWeatherForecastDay
+	ResponseWeatherForecastDay,
+	UserCoordinates,
 } from '~/interfaces'
 
 export const useSearchStore = defineStore('search', {
@@ -89,7 +90,7 @@ export const useSearchStore = defineStore('search', {
 			)
 			this.foundLocations = data
 		},
-		async getForecastLocationWeather(locationUrl: string): Promise<void> {
+		async getForecastLocationWeather(locationName: string): Promise<void> {
 			const config = useRuntimeConfig()
 			const data: ResponseWeatherForecastBody = await $fetch(
 				`${config.public.apiBase}/forecast.json`,
@@ -100,7 +101,7 @@ export const useSearchStore = defineStore('search', {
 					},
 					params: {
 						key: config.public.apiSecret,
-						q: locationUrl,
+						q: locationName,
 						aqi: 'no',
 						days: 7,
 						alerts: 'no',
@@ -111,6 +112,26 @@ export const useSearchStore = defineStore('search', {
 		},
 		clearFoundLocationsData() {
 			this.foundLocations = [] as ResponseLocationsFound[]
+		},
+		async getCurrentUserLocationWeather(coordinates: UserCoordinates): Promise<void> {
+			const config = useRuntimeConfig()
+			const data: ResponseWeatherForecastBody = await $fetch(
+				`${config.public.apiBase}/forecast.json`,
+				{
+					method: 'GET',
+					headers: {
+						'Access-Control-Allow-Origin': '*',
+					},
+					params: {
+						key: config.public.apiSecret,
+						q: `${coordinates.lat},${coordinates.lon}`,
+						aqi: 'no',
+						days: 7,
+						alerts: 'no',
+					},
+				}
+			)
+			this.currentLocationWeather = data
 		},
 	},
 	persist: {

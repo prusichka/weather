@@ -1,3 +1,7 @@
+export interface UserCoordinates {
+	lat: string
+	lon: string
+}
 export interface ResponseLocationsFound {
 	id: number
 	name: string

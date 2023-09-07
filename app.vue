@@ -1,3 +1,9 @@
+<script setup lang="ts">
+onBeforeMount(() => {
+	usePermissionGeo()
+})
+</script>
+
 <template>
 	<VitePwaManifest />
 	<NuxtLayout>

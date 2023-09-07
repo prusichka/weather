@@ -7,6 +7,7 @@ export default defineNuxtConfig({
 			meta: [
 				{ name: 'description', content: 'My amazing weather site.' },
 				{ name: 'name', content: 'Weather' },
+				{ name: 'theme-color', content: '#000000' },
 			],
 			htmlAttrs: {
 				lang: 'en',
@@ -47,6 +48,12 @@ export default defineNuxtConfig({
 				{
 					src: 'android-launchericon-512-512.png',
 					sizes: '512x512',
+					type: 'image/png',
+				},
+				{
+					src: 'maskable_icon.png',
+					purpose: 'maskable',
+					sizes: '196x196',
 					type: 'image/png',
 				},
 			],
